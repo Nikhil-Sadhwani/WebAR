@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -12,46 +13,48 @@
         device-orientation-permission-ui="enabled: false">
         <a-assets>
             <img id="card"
-                src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/card-example/card.png" />
-            <a-asset-item id="avatarModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/card-example/softmind/scene.gltf"></a-asset-item>
+                src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/card-example/card.png"
+                crossorigin="anonymous" />
+            <a-asset-item id="avatarModel"
+                src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/card-example/softmind/scene.gltf">
+            </a-asset-item>
         </a-assets>
 
-        <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+        <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: true; fuseTimeout: 500"></a-camera>
 
         <a-entity mindar-image-target="targetIndex: 0">
-            <!-- <a-plane src="#card" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane> -->
+            <a-plane src="#card" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane>
             <a-gltf-model rotation="0 0 0" position="0 0 0.1" scale="0.005 0.005 0.005" src="#avatarModel"
                 animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
             </a-gltf-model>
 
-            <!-- Social Media Icons -->
-            <a-entity position="0 -0.6 0">
-                <a-image src="https://github.com/Nikhil-Sadhwani/WebAR" position="-0.4 0 0"
-                    scale="0.2 0.2 0.2" class="clickable" data-link="https://github.com">
-                </a-image>
-                <a-image src="https://cdn-icons-png.flaticon.com/512/733/733547.png" position="0 0 0"
-                    scale="0.2 0.2 0.2" class="clickable" data-link="https://twitter.com">
-                </a-image>
-                <a-image src="https://cdn-icons-png.flaticon.com/512/733/733558.png" position="0.4 0 0"
-                    scale="0.2 0.2 0.2" class="clickable" data-link="https://linkedin.com">
-                </a-image>
-            </a-entity>
+            <!-- Button 1 -->
+            <a-plane id="button1" position="0 -0.6 0" width="0.5" height="0.3" color="#4CAF50"
+                text="value: Previous; align: center; color: white; width: 4"
+                event-set__mouseenter="scale: 1.2 1.2 1"
+                event-set__mouseleave="scale: 1 1 1"></a-plane>
+            <!-- Button 2 -->
+            <a-plane id="button2" position="0.6 0 0" width="0.5" height="0.3" color="#2196F3"
+                text="value: Next; align: center; color: white; width: 4" event-set__mouseenter="scale: 1.2 1.2 1"
+                event-set__mouseleave="scale: 1 1 1"></a-plane>
         </a-entity>
+
     </a-scene>
 
     <script>
-        // Add click event listeners to social icons
-        document.querySelectorAll('.clickable').forEach(icon => {
-            icon.addEventListener('click', (e) => {
-                const link = e.target.getAttribute('data-link');
-                window.open(link, '_blank');
-            });
+        // JavaScript to handle button actions
+        document.querySelector('#button1').addEventListener('click', () => {
+            console.log('Previous button clicked!');
+            window.open("https://github.com/Nikhil-Sadhwani/WebAR/blob/main/index.html", "_blank");
+            // Implement your "Previous" navigation logic here
+        });
+        
+        document.querySelector('#button2').addEventListener('click', () => {
+            console.log('Next button clicked!');
+            window.open("https://wellfound.com/jobs", "_blank");
+            // Implement your "Next" navigation logic here
         });
     </script>
 </body>
 
 </html>
-
-            <!-- <a-asset-item id="avatarModel"
-                 src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/card-example/softmind/scene.gltf"
-                 ></a-asset-item>  -->
